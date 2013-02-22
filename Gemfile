@@ -2,6 +2,22 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.11'
 
+# Database
+gem "mongoid", "3.0.13"
+
+gem 'devise'
+
+# Image uploading & on-the-fly processing
+gem 'rack-cache', :require => 'rack/cache'
+gem 'dragonfly'
+gem 'mongo', '1.7.1'
+gem 'bson_ext'
+
+# other
+gem 'settingslogic'
+gem 'simple_form'
+gem 'kaminari'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -13,4 +29,8 @@ group :assets do
   gem 'jquery-rails'
 end
 
+group :development do
+  gem 'pry'
+  gem 'cane'
+end
 
