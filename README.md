@@ -14,6 +14,8 @@
       = Status
       = Borrower
       = Image (maybe)
+    + relationship:
+      = belongs_to order
 
 ###Order:
     + fields:
@@ -22,3 +24,4 @@
       = Status
     + relationship:
       = belongs_to user
+      = has_one item
