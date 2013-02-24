@@ -14,13 +14,17 @@
       = Status
       = Borrower
       = Image (maybe)
+      = Item_Type
+      = Description
+      = Quantity
     + relationship:
       = belongs_to order
 
 ###Order:
     + fields:
       = Item name
-      = Range
+      = Start date
+      = End date
       = Status
     + relationship:
       = belongs_to user
