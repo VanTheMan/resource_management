@@ -1,6 +1,8 @@
 ResourceManagement::Application.routes.draw do
   devise_for :users
 
+  root to: "items#index"
+
   resources :items
 
   # The priority is based upon order of creation:

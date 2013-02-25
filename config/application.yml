@@ -1,0 +1,16 @@
+defaults: &defaults
+  host: localhost:3000
+  item_type:
+    - Book
+    - Room
+    - Stuff
+
+development:
+  <<: *defaults
+  neat_setting: 800
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults

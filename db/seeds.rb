@@ -5,3 +5,7 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+10.times do
+  Fabricate(:item, item_image: File.open("#{Rails.root}/app/assets/images/items/#{rand(1..5)}.png"))
+end

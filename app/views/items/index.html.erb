@@ -1,11 +1,24 @@
-<table>
+<table class="table table-striped">
   <thead>
     <tr>
       <th>#</th>
-      <th></th>
-      <th></th>
-      <th></th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Photo</th>
+      <th>Quantity</th>
+      <th>Status</th>
     </tr>
   </thead>
-  <tbody></tbody>
+  <tbody>
+    <% @items.each do |item| %>
+      <tr>
+        <th></th>
+        <th><%= item.name %></th>
+        <th><%= item.description %></th>
+        <th><%= image_tag(item.item_image.url) %></th>
+        <th><%= item.quantity %></th>
+        <th><%= item.status %></th>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
