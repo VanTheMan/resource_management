@@ -7,7 +7,10 @@
 
 <hr>
 
-<%= link_to 'New Item', new_item_path, class: 'btn' %>
+<%= link_to 'New Item', new_item_path, class: 'btn btn-primary' %>
+<span class="search-items">
+  <input type="text" placeholder="search items..." id="search_item" style="float:right">
+</span>
 
 <br />
 <br />
@@ -29,7 +32,7 @@
     <% @items.each_with_index do |item, index| %>
       <tr>
         <td><%= index + 1 %></td>
-        <td><%= item.name %></td>
+        <td><%= link_to item.name,item_path(item) %></td>
         <td><%= item.item_type %></td>
         <td><%= image_tag(item.item_image.url) %></td>
         <td><%= item.description %></td>
