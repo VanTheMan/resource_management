@@ -13,5 +13,7 @@ class Item
   attr_accessible :name, :description, :status, :item_type, :quantity, :item_image
 
   belongs_to :order
-  belongs_to :borrower, inverse_of: User
+  belongs_to :borrower, class_name: "User"
+
+  validates_presence_of :name, :item_type
 end

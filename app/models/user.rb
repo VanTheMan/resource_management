@@ -29,4 +29,5 @@ class User
 
   field :name, type: String
   has_many :orders
+  has_many :items
 end

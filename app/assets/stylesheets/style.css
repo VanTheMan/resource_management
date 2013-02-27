@@ -21,3 +21,15 @@ body {
 .navbar-fixed-top .container, .navbar-fixed-bottom .container {
   width: 980px;
 }
+
+th.fc-widget-header {
+  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #B5BABF), color-stop(100%, #7B8590));
+  background: -webkit-linear-gradient(#B5BABF, #7B8590);
+  background: -moz-linear-gradient(#B5BABF, #7B8590);
+  background: -o-linear-gradient(#B5BABF, #7B8590);
+  background: linear-gradient(#B5BABF, #7B8590);
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+  color: white;
+  border-color: #7B8590;
+  line-height: 24px;
+}

@@ -13,3 +13,27 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap
+//= require jquery.ui.all
+//= require fullcalendar
+//= require gcal
+
+$(document).ready(function(){
+  $(".order").click(function(e){
+    e.preventDefault();
+    $("#orderModal").modal('show');
+    return false;
+  });
+
+  $( ".datepicker" ).datepicker({ dateFormat: "dd-mm-yy" });
+
+  $('#calendar').fullCalendar({
+      header: {
+      left: 'prev,next today',
+      center: 'title',
+      right: 'month'
+    },
+    selectable: true,
+    selectHelper: true,
+    lazyFetching: true,
+  })
+});

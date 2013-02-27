@@ -37,9 +37,10 @@
         <td><%= item.item_type %></td>
         <td><%= image_tag(item.item_image.url) %></td>
         <td><%= item.description %></td>
+        <td><%= item.try(:borrower) ? item.borrower.name : "" %></td>
         <td><%= item.quantity %></td>
         <td><%= item.status %></td>
-        <td><%= link_to "Order", "#" %></td>
+        <td><%= link_to "Order", "#", class: "order" %></td>
       </tr>
     <% end %>
   </tbody>

@@ -1,36 +1,41 @@
 <ul class="breadcrumb">
   <li><a href="<%= root_path %>">Home</a> <span class="divider">/</span></li>
   <li><a href="<%= items_path %>">Items</a> <span class="divider">/</span></li>
+  <li><a href="#"><%= @item.item_type %></a> <span class="divider">/</span></li>
   <li class="active"><%= @item.name %></li>
 </ul>
 
-<p>
-  <h1>
-    <%= @item.name %>
-    <%= link_to "Order", "#", class: "btn btn-primary" %>
-  </h1>
-</p>
+<% if @item.item_type == "Room" %>
+  <%= render 'items/room' %>
+<% else %>
+  <p>
+    <h2>
+      <%= @item.name %>
+      <%= link_to "Order", "#", class: "btn btn-primary" %>
+    </h2>
+  </p>
 
-<p>
-  <b>Type: </b>
-  <%= @item.item_type %>
-</p>
+  <p>
+    <b>Type: </b>
+    <%= @item.item_type %>
+  </p>
 
-<p>
-  <b>Description: </b>
-  <%= @item.description %>
-</p>
+  <p>
+    <b>Description: </b>
+    <%= @item.description %>
+  </p>
 
-<p>
-  <b>Status: </b>
-  <%= @item.status %>
-</p>
+  <p>
+    <b>Status: </b>
+    <%= @item.status %>
+  </p>
 
-<p>
-  <b>Photo: </b>
-</p>
-<p>
-  <%= image_tag(@item.item_image.url) %>
-</p>
+  <p>
+    <b>Photo: </b>
+  </p>
+  <p>
+    <%= image_tag(@item.item_image.url) %>
+  </p>
 
-<%= link_to "Back", items_path, class: "btn" %>
+  <%= link_to "Back", items_path, class: "btn" %>
+<% end %>
