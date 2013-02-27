@@ -40,7 +40,10 @@
         <td><%= item.try(:borrower) ? item.borrower.name : "" %></td>
         <td><%= item.quantity %></td>
         <td><%= item.status %></td>
-        <td><%= link_to "Order", "#", class: "order" %></td>
+        <td>
+          <%= link_to "Order", "#", class: "order" %>
+          <%= render 'orders/new', item: item %>
+        </td>
       </tr>
     <% end %>
   </tbody>

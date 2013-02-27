@@ -7,7 +7,7 @@ class Order
   field :status, type: String
   field :reason, type: String
 
-  has_one :item
+  belongs_to :item
   belongs_to :user
 
   attr_accessible :start_date, :end_date

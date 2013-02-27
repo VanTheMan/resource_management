@@ -18,8 +18,16 @@ body {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1)
 }
 
+.footer {
+  margin-bottom: 40px;
+}
+
 .navbar-fixed-top .container, .navbar-fixed-bottom .container {
   width: 980px;
+}
+
+.fc-header-title h2{
+  font-size: 24px;
 }
 
 th.fc-widget-header {

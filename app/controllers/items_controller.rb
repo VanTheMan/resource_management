@@ -38,4 +38,9 @@ class ItemsController < ApplicationController
       render 'new'
     end
   end
+
+  def events
+    @item = Item.find(params[:id])
+
+  end
 end

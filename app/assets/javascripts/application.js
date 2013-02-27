@@ -19,21 +19,11 @@
 
 $(document).ready(function(){
   $(".order").click(function(e){
+    // $(this).parents("tr").find("td").last().css("display: block");
     e.preventDefault();
     $("#orderModal").modal('show');
     return false;
   });
 
   $( ".datepicker" ).datepicker({ dateFormat: "dd-mm-yy" });
-
-  $('#calendar').fullCalendar({
-      header: {
-      left: 'prev,next today',
-      center: 'title',
-      right: 'month'
-    },
-    selectable: true,
-    selectHelper: true,
-    lazyFetching: true,
-  })
 });

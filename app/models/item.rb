@@ -12,7 +12,7 @@ class Item
 
   attr_accessible :name, :description, :status, :item_type, :quantity, :item_image
 
-  belongs_to :order
+  has_many :orders
   belongs_to :borrower, class_name: "User"
 
   validates_presence_of :name, :item_type

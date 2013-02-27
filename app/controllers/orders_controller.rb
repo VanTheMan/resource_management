@@ -4,7 +4,8 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @order = Order.create!(params[:order])
+    @item = Item.find(params[:item_id])
+    @order = @item.orders.create!(params[:order])
     if @order.save
       redirect_to root_path
     else
