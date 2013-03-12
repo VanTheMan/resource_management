@@ -1,6 +1,11 @@
 class ItemsController < ApplicationController
   def index
-    @items = Item.all
+    if params[:type]
+      @item_type = ItemType.where(name: params[:type]).first
+      @items = @item_type.items
+    else
+      @items = Item.all
+    end
   end
 
   def edit
@@ -40,7 +45,9 @@ class ItemsController < ApplicationController
   end
 
   def events
-    @item = Item.find(params[:id])
-
+    # binding.pry
+    @item = Item.find(params[:item_id])
+    @orders = @item.orders
+    render json: { orders: @orders.map(&:to_json) }
   end
 end

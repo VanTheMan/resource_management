@@ -1,21 +1,32 @@
 <div id='calendar' style="margin-bottom: 30px"></div>
+<div id="room_id" style="display:none"><%= room.id %></div>
 <%= render 'orders/new', item: @item %>
 <script type="text/javascript">
   $(document).ready(function(){
     var modal = $("#orderModal");
+    var events_feed = $("#room_id").text()+ "/events";
+    console.log(events_feed);
     $('#calendar').fullCalendar({
       header: {
         left: 'prev,next today',
         center: 'title',
-        right: 'month'
+        right: 'month, agendaDay'
       },
       selectable: true,
       selectHelper: true,
       lazyFetching: true,
+      events: events_feed,
       select: function(start, end, allDay){
         var form = modal.find("form");
-        form.find('.start_date_input').val(start.getDate() + '-' + (start.getMonth()+1) + '-' + start.getFullYear());
-        form.find('.end_date_input').val(end.getDate() + '-' + (end.getMonth()+1) + '-' + end.getFullYear());
+        var start_input = start.getHours()+":"+ start.getMinutes()+":"+ start.getSeconds()+ " "+
+                          start.getDate() + '-' + (start.getMonth()+1) + '-' + start.getFullYear();
+        var end_input = end.getHours()+":"+ end.getMinutes()+":"+ end.getSeconds()+ " "+
+                        end.getDate() + '-' + (end.getMonth()+1) + '-' + end.getFullYear();
+        form.find('.start_date_input').val(start_input);
+        form.find('.end_date_input').val(end_input);
+        // form.find('.start_date_input').val(start.getDate() + '-' + (start.getMonth()+1) + '-' + start.getFullYear());
+        // form.find('.start_date_input').val(start);
+        // form.find('.end_date_input').val(end.getDate() + '-' + (end.getMonth()+1) + '-' + end.getFullYear());
         $("#orderModal").modal('show');
       }
     })

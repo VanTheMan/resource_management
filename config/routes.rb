@@ -4,6 +4,7 @@ ResourceManagement::Application.routes.draw do
   root to: "items#index"
 
   resources :items do
+    get :events
     resources :orders
   end
 

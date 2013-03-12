@@ -26,4 +26,26 @@ $(document).ready(function(){
   });
 
   $( ".datepicker" ).datepicker({ dateFormat: "dd-mm-yy" });
+
+  $(".order-form").submit(function(){
+    var url = $(this).attr('action');
+    var type = $(this).attr('method');
+    var f = $(this);
+    $.ajax({
+      url: url,
+      type: type,
+      dataType: "json",
+      data: f.serialize(),
+      success: function(response){
+        if (response.success){
+          alert("Order Successfully!");
+          $("#orderModal").modal('hide');
+          f[0].reset();
+        } else {
+          alert(response.html);
+        }
+      }
+    });
+    return false;
+  });
 });

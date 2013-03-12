@@ -1,12 +1,12 @@
 <ul class="breadcrumb">
   <li><a href="<%= root_path %>">Home</a> <span class="divider">/</span></li>
   <li><a href="<%= items_path %>">Items</a> <span class="divider">/</span></li>
-  <li><a href="#"><%= @item.item_type %></a> <span class="divider">/</span></li>
+  <li><a href="<%= items_path(type: @item.item_type.name) %>"><%= @item.item_type.name %></a> <span class="divider">/</span></li>
   <li class="active"><%= @item.name %></li>
 </ul>
 
-<% if @item.item_type == "Room" %>
-  <%= render 'items/room' %>
+<% if @item.item_type.name == "Room" %>
+  <%= render 'items/room', room: @item %>
 <% else %>
   <p>
     <h2>
@@ -17,7 +17,12 @@
 
   <p>
     <b>Type: </b>
-    <%= @item.item_type %>
+    <%= @item.item_type.name %>
+  </p>
+
+  <p>
+    <b>Code: </b>
+    <%= @item.code %>
   </p>
 
   <p>
