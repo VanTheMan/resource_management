@@ -28,8 +28,7 @@
       <th>Type</th>
       <th>Code</th>
       <th>Description</th>
-      <th>Available in</th>
-      <th>Borrowers</th>
+      <th>Borrowing</th>
       <th></th>
     </tr>
   </thead>
@@ -41,8 +40,7 @@
         <td><%= item.item_type.name %></td>
         <td><%= item.code %></td>
         <td><%= item.description %></td>
-        <td><%= item.available_in %></td>
-        <td><%= item.try(:borrower) ? item.borrower.name : "" %></td>
+        <td><%= item.current_order.nil? ? "" : item.current_order.user.name %></td>
         <td>
           <%= link_to "Order", "#", class: "order" %>
           <%= render 'orders/new', item: item %>

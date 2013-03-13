@@ -1,4 +1,6 @@
 class OrdersController < ApplicationController
+  before_filter :authenticate_user!
+
   def new
     @order = Order.new
   end
@@ -7,6 +9,7 @@ class OrdersController < ApplicationController
     @item = Item.find(params[:item_id])
     @order = Order.new(params[:order])
     @order.item = @item
+    @order.user = current_user
     if @order.save
       respond_to do |format|
         format.html { redirect_to root_path }

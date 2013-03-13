@@ -19,5 +19,5 @@ end
 puts "Create items"
 10.times do
   Fabricate(:item, item_image: File.open("#{Rails.root}/app/assets/images/items/#{rand(1..5)}.png"),
-                   borrower: User.all.sample, item_type: ItemType.all.sample)
+                   item_type: ItemType.all.sample)
 end

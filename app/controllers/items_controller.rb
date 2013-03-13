@@ -1,4 +1,6 @@
 class ItemsController < ApplicationController
+  before_filter :authenticate_user!
+
   def index
     if params[:type]
       @item_type = ItemType.where(name: params[:type]).first
@@ -47,7 +49,6 @@ class ItemsController < ApplicationController
   def events
     @item = Item.find(params[:item_id])
     @orders = @item.orders.where(:start_date.gte => Time.at(params[:start].to_i), :start_date.lte => Time.at(params[:end].to_i))
-    # binding.pry
     render json: @orders.as_json
   end
 end

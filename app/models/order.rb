@@ -4,13 +4,14 @@ class Order
 
   field :start_date, type: Date
   field :end_date, type: Date
+  field :allDay, type: Boolean, default: true
   field :status, type: String
   field :reason, type: String
 
   belongs_to :item
   belongs_to :user
 
-  attr_accessible :start_date, :end_date, :reason, :item_id
+  attr_accessible :start_date, :end_date, :reason, :item_id, :user_id, :allDay
   validates_presence_of :start_date, :end_date, :reason
   validate :valid_input_dates?
   before_save :valid_range?
@@ -45,7 +46,8 @@ class Order
     {
       title: reason,
       start: start_date.to_datetime,
-      end: end_date
+      end: end_date,
+      allDay: allDay
     }
   end
 end

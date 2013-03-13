@@ -15,14 +15,32 @@ class Item
 
   has_many :orders
   belongs_to :item_type
-  belongs_to :borrower, class_name: "User"
+  # belongs_to :borrower, class_name: "User"
 
   validates_presence_of :name, :item_type_id
 
+  def last_order
+    orders.blank? ? nil : orders.sort{ |x,y| y.end_date <=> x.end_date }.first
+  end
+
   def available_in
-    unless orders.blank?
-      return orders.map(&:end_date).max > Date.today ? orders.map(&:end_date).max + 1.day : Date.today
+    # unless orders.blank?
+    #   return orders.map(&:end_date).max > Date.today ? orders.map(&:end_date).max + 1.day : Date.today
+    # end
+    # return Date.today
+    if last_order.nil?
+      return Date.today
+    else
+      if last_order.start_date > Date.today
+        return Date.today
+      else
+        return last_order.end_date
+      end
     end
-    return Date.today
+  end
+
+  def current_order
+    # binding.pry
+    orders.where(:start_date.lte => Time.now, :end_date.gte => Time.now).first
   end
 end
