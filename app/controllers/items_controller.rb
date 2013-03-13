@@ -45,9 +45,9 @@ class ItemsController < ApplicationController
   end
 
   def events
-    # binding.pry
     @item = Item.find(params[:item_id])
-    @orders = @item.orders
-    render json: { orders: @orders.map(&:to_json) }
+    @orders = @item.orders.where(:start_date.gte => Time.at(params[:start].to_i), :start_date.lte => Time.at(params[:end].to_i))
+    # binding.pry
+    render json: @orders.as_json
   end
 end

@@ -25,10 +25,10 @@ class Order
       return false
     end
 
-    if is_booked_in?(start_date, end_date)
-      errors.add(:base, "This item has already been booked at this range of time, please choose another day")
-      return false
-    end
+    # if is_booked_in?(start_date, end_date)
+    #   errors.add(:base, "This item has already been booked at this range of time, please choose another day")
+    #   return false
+    # end
 
     return true
   end
@@ -42,5 +42,13 @@ class Order
       return true if o.in_range?(start_time, end_time) == true
     end
     return false
+  end
+
+  def as_json
+    {
+      title: title,
+      start: start_date,
+      end: end_date
+    }
   end
 end
