@@ -5,13 +5,13 @@ class Order
   field :start_date, type: Date
   field :end_date, type: Date
   field :status, type: String
-  field :title, type: String
+  field :reason, type: String
 
   belongs_to :item
   belongs_to :user
 
-  attr_accessible :start_date, :end_date, :title, :item_id
-  validates_presence_of :start_date, :end_date
+  attr_accessible :start_date, :end_date, :reason, :item_id
+  validates_presence_of :start_date, :end_date, :reason
   validate :valid_input_dates?
   before_save :valid_range?
 
@@ -30,21 +30,21 @@ class Order
   end
 
   def valid_range?
-    if in_range(start_date, end_date)
+    if in_range(start_date, end_date, item_id)
       errors.add(:base, "This item has already been booked at this range of time, please choose another day")
       return false
     end
     return true
   end
 
-  def in_range(start_time, end_time)
-    Order.where(:start_date.gte => start_time, :start_date.lte => end_time).first || Order.where(:end_date.gte => start_time, :end_date.lte => end_time ).first
+  def in_range(start_time, end_time, item_id)
+    Order.where(:start_date.gte => start_time, :start_date.lte => end_time, :item_id => item_id).first || Order.where(:end_date.gte => start_time, :end_date.lte => end_time, :item_id => item_id ).first
   end
 
   def as_json
     {
-      title: title,
-      start: start_date,
+      title: reason,
+      start: start_date.to_datetime,
       end: end_date
     }
   end

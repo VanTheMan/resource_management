@@ -4,7 +4,7 @@ class Item
 
   field :name, type: String
   field :description, type: String
-  field :status, type: String, default: "Available" # Available, N/A
+  # field :status, type: String, default: "Available" # Available, N/A
   # field :item_type
   # field :quantity, type: Integer
   field :item_image_uid
@@ -18,4 +18,11 @@ class Item
   belongs_to :borrower, class_name: "User"
 
   validates_presence_of :name, :item_type_id
+
+  def available_in
+    unless orders.blank?
+      return orders.map(&:end_date).max > Date.today ? orders.map(&:end_date).max + 1.day : Date.today
+    end
+    return Date.today
+  end
 end

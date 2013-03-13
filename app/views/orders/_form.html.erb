@@ -6,7 +6,7 @@
     <%= f.input :item_id, as: :hidden, input_html: { value: "#{item.id}"}, wrapper_html: {style: "display: none"} %>
     <%= f.input :start_date, readonly: true, input_html: { class: "datepicker start_date_input" } %>
     <%= f.input :end_date, readonly: true, input_html: { class: "datepicker end_date_input" } %>
-    <%= f.input :title, as: :text , input_html: { rows: 3 } %>
+    <%= f.input :reason, as: :text , input_html: { rows: 3 } %>
   </div>
 
   <div class="form-actions">
