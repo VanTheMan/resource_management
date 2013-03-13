@@ -13,9 +13,10 @@ class Order
   attr_accessible :start_date, :end_date, :title, :item_id
   validates_presence_of :start_date, :end_date
   validate :valid_input_dates?
+  before_save :valid_range?
 
   def valid_input_dates?
-    unless start_date < end_date
+    unless start_date <= end_date
       errors.add(:base, "Start date must be before end date")
       return false
     end
@@ -25,23 +26,19 @@ class Order
       return false
     end
 
-    # if is_booked_in?(start_date, end_date)
-    #   errors.add(:base, "This item has already been booked at this range of time, please choose another day")
-    #   return false
-    # end
-
     return true
   end
 
-  def in_range?(start_time, end_time)
-    (start_date > end_time) || (end_date < start_time)
+  def valid_range?
+    if in_range(start_date, end_date)
+      errors.add(:base, "This item has already been booked at this range of time, please choose another day")
+      return false
+    end
+    return true
   end
 
-  def is_booked_in?(start_time, end_time)
-    Order.all.each do |o|
-      return true if o.in_range?(start_time, end_time) == true
-    end
-    return false
+  def in_range(start_time, end_time)
+    Order.where(:start_date.gte => start_time, :start_date.lte => end_time).first || Order.where(:end_date.gte => start_time, :end_date.lte => end_time ).first
   end
 
   def as_json

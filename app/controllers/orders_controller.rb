@@ -5,9 +5,9 @@ class OrdersController < ApplicationController
 
   def create
     @item = Item.find(params[:item_id])
-    @order = @item.orders.create(params[:order])
+    @order = Order.new(params[:order])
+    @order.item = @item
     if @order.save
-      # redirect_to root_path
       respond_to do |format|
         format.html { redirect_to root_path }
         format.json { render json: { success: true } }

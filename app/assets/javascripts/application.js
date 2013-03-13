@@ -41,8 +41,10 @@ $(document).ready(function(){
           alert("Order Successfully!");
           $("#orderModal").modal('hide');
           f[0].reset();
+          window.location.reload();
         } else {
           alert(response.html);
+          $("#orderModal").modal('hide');
         }
       }
     });
