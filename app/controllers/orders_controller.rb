@@ -7,6 +7,8 @@ class OrdersController < ApplicationController
 
   def create
     @item = Item.find(params[:item_id])
+    params[:order][:start_date] = params[:order][:start_date].to_datetime
+    params[:order][:end_date] = params[:order][:end_date].to_datetime
     @order = Order.new(params[:order])
     @order.item = @item
     @order.user = current_user

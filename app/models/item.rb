@@ -11,13 +11,13 @@ class Item
   field :code, type: String
   image_accessor :item_image
 
-  attr_accessible :name, :description, :status, :item_type_id, :quantity, :item_image
+  attr_accessible :name, :description, :status, :item_type_id, :quantity, :item_image, :code
 
   has_many :orders
   belongs_to :item_type
   # belongs_to :borrower, class_name: "User"
 
-  validates_presence_of :name, :item_type_id
+  validates_presence_of :name, :item_type_id, :code
 
   def last_order
     orders.blank? ? nil : orders.sort{ |x,y| y.end_date <=> x.end_date }.first

@@ -3,9 +3,9 @@
 
   <div class="form-inputs">
     <%= f.input :name %>
+    <%= f.input :code %>
     <%= f.input :description, as: :text, input_html: { rows: 5 } %>
-    <%= f.input :item_type, collection: Settings.item_type, prompt: "Select type" %>
-    <%= f.input :quantity %>
+    <%= f.input :item_type, collection: ItemType.all.map(&:name), prompt: "Select type" %>
     <%= f.input :item_image, as: :file %>
   </div>
 

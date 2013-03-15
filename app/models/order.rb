@@ -2,8 +2,8 @@ class Order
   include Mongoid::Document
   include Mongoid::Timestamps
 
-  field :start_date, type: Date
-  field :end_date, type: Date
+  field :start_date, type: DateTime
+  field :end_date, type: DateTime
   field :allDay, type: Boolean, default: true
   field :status, type: String
   field :reason, type: String
@@ -46,7 +46,7 @@ class Order
     {
       title: reason,
       start: start_date.to_datetime,
-      end: end_date,
+      end: end_date.to_datetime,
       allDay: allDay
     }
   end
